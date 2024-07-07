@@ -1,0 +1,10 @@
+<div class="main">
+    <div class="close">
+        <button mat-flat-button (click)="dialogRef.close();">Close</button>
+    </div>
+    <h1>Profile</h1>
+    <div class="user-details" *ngIf="user$ | async as user">
+        <h2>Email: {{user.email}}</h2>
+    </div>
+    <button (click)="signOut()" mat-flat-button>Sign Out</button>
+</div>

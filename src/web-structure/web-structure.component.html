@@ -1,0 +1,195 @@
+<div class="page-render">
+  <div class="main">
+    <div class="navbar">
+      <img src="../assets/img/liferando.png" />
+      <div class="btn-navbar-class">
+        <button (click)="openBasket()">
+          <img src="../assets/img/warenkorb/add-to-cart.png" />
+        </button>
+        <button mat-button (click)="openDialog()">Profile</button>
+      </div>
+    </div>
+    <div class="body-products">
+        <div class="sidenav" [class.open]="isBasketOpen">
+            <mat-card class="mat-card" appearance="outlined">
+                <mat-card-content>
+                    <div class="side-header">
+                        <span class="close" (click)="closeBasket()">&times;</span>
+                        <h2>Warenkorb</h2>
+                        <img src="../assets/img/warenkorb/invoice.png" />
+                        <div class="basket" id="basket" *ngIf="isBasketOpen">
+                          <div class="basket-main" *ngFor="let item of basketItems">
+                            <div class="basket-add">
+                              <button mat-fab class="btn" (click)="removeItemFromBasket(item.name, $event)"><mat-icon>remove_circle</mat-icon></button>
+                              <button mat-fab class="btn" (click)="addItemToBasket(item.name, item.price, $event)"><mat-icon>add_circle</mat-icon></button>
+                            </div>
+                            <span>{{ item.name }} - {{ item.quantity }} x {{ item.price.toFixed(2) }} €</span>
+                            <button mat-fab class="btn" (click)="removeBin(item.name, $event)"><mat-icon>delete</mat-icon></button>
+                          </div>
+                        </div>
+                        <div class="side-total" id="subtotal"></div>
+                        <div class="side-lifer" id="liferKosten" *ngIf="isBasketOpen"></div>
+                        <div class="bezahlen" id="btn" *ngIf="isBasketOpen">
+                          <button (click)="checkout()">Checkout</button>
+                        </div>
+                      </div>
+                </mat-card-content>
+            </mat-card>
+          </div>
+          
+      <div class="products">
+        <div class="headline-wrapper">
+          <div class="headline-img">
+            <img src="../assets/img/header.JPG" />
+          </div>
+          <div class="headline-info">
+            <div class="headline-main">
+              <div class="headline-logo">
+                <img src="../assets/img/logo_465x320.png" />
+              </div>
+              <div class="headline-information">
+                <h2>Pizza Max</h2>
+                <div class="star-rating">
+                  <input
+                    type="radio"
+                    id="star5"
+                    name="rating"
+                    class="star"
+                    value="5"
+                  />
+                  <label for="star5">&#9733;</label>
+                  <input
+                    type="radio"
+                    id="star4"
+                    name="rating"
+                    class="star"
+                    value="4"
+                  />
+                  <label for="star4">&#9733;</label>
+                  <input
+                    type="radio"
+                    id="star3"
+                    name="rating"
+                    class="star"
+                    value="3"
+                    checked
+                  />
+                  <label for="star3">&#9733;</label>
+                  <input
+                    type="radio"
+                    id="star2"
+                    name="rating"
+                    class="star"
+                    value="2"
+                  />
+                  <label for="star2">&#9733;</label>
+                  <input
+                    type="radio"
+                    id="star1"
+                    name="rating"
+                    class="star"
+                    value="1"
+                  />
+                  <label for="star1">&#9733;</label>
+                  <span>355 Bewerbung</span>
+                </div>
+                <div class="menu-popular">
+                  <div class="main-menu">
+                    <a class="men2" href="#ak123">Aktion</a>
+                    <a class="men2" href="#1234">Pizza Klassiker</a>
+                    <a class="men2" href="#12345">Pizza Premium</a>
+                    <a class="men2" href="#123456">Burgers</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="products-main">
+            <div class="product-class">
+              <div class="products-aktion">
+                <div class="aktion" id="ak123">
+                  <h2>Aktion</h2>
+                  <div id="containerAktion">
+                    <div
+                      *ngFor="let product of posts"
+                      class="post-container-aktion"
+                    >
+                      <a
+                        href="#"
+                        class="aktion-last"
+                        (click)="
+                          addToBasket(product.name, product.price, $event)
+                        "
+                      >
+                        <div class="last">
+                          <span class="span">{{ product.name }}</span>
+                          <span class="span2">{{ product.details }}</span>
+                          <span class="span3">{{ product.size }}</span>
+                          <span class="span4">{{ product.price }}</span>
+                        </div>
+                        <div class="last-img">
+                          <img
+                            [src]="product.burgerPhoto"
+                            alt="Product Image"
+                          />
+                        </div>
+                        <div class="last-plus">
+                          <img
+                            class="img"
+                            [src]="product.plus"
+                            alt="Add to basket"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="aktion">
+                  <div class="big-photo"></div>
+                </div>
+                <div class="aktion" id="1234">
+                  <h2>Pizza Klassiker</h2>
+                  <div id="pizzaKlassiker" class="pizzaKlassiker">
+                    <div
+                      *ngFor="let product of klassik"
+                      class="post-container-aktion"
+                    >
+                      <a
+                        href="#"
+                        class="aktion-last"
+                        (click)="
+                          addToBasket(product.name, product.price, $event)
+                        "
+                      >
+                        <div class="last">
+                          <span class="span">{{ product.name }}</span>
+                          <span class="span2">{{ product.details }}</span>
+                          <span class="span3">{{ product.size }}</span>
+                          <span class="span4">{{ product.price }}</span>
+                        </div>
+                        <div class="last-img">
+                          <img
+                            [src]="product.burgerPhoto"
+                            alt="Product Image"
+                          />
+                        </div>
+                        <div class="last-plus">
+                          <img
+                            class="img"
+                            [src]="product.plus"
+                            alt="Add to basket"
+                          />
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
